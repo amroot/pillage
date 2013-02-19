@@ -1,0 +1,44 @@
+-------
+Name: pillage
+Script Name: pillage-0.03.lua
+Version: 0.03
+License: BSD Simplified
+Author: robert - amroot.com
+Date: Jun 25, 2012
+Description: currently, pillage's only job is to pillage web applications for forms and log them to a csv file. 
+what someone does with those forms is up to them. soon it will also log form fields as well. 
+-------
+Required: lua5.1
+Debian prereq: socket, curl
+Linux Mint: apt-get install lua5.1 liblua5.1-socket-dev liblua5.1-curl-dev
+-------
+Short to do:
+form based authentication.
+replace url.socket with regex
+threads - lots of threads
+better error handling and debugging
+submit forms for multi-stage form disc?
+do not add previously found forms
+find and log form fields
+-------
+Notes:
+in before // is hierarchical and not part of the uri scheme
+-------
+Version history:
+0.03: first commit.
+-------
+Pillage usage: 
+	-u	 - required: valid URL to crawl. http(s)://userid:password@www.attackersite.com:port
+	-r	 - optional: follow redirects (301 response).
+	-t	 - optional: time in milliseconds to pause between requests
+	-s	 - optional: do not stay within scope (this might crawl the world)
+	-w	 - optional: write to file in csv format. ./save.csv
+	-m	 - optional: max URLs to follow. default is never stop crawling until there are no more to crawl
+	-a	 - optional: user agent (pillage-agent/1.0 by default)
+	-c	 - optional: cookie storage (default cookiejar.txt)
+	-v	 - optional: verbosity. -v[1-3]
+	-h	 - optional: what you're seeing right now
+
+Example: 
+	./pillage-0.03.lua -u http://www.attackersite.com -r -s -a 'attacker-agent/1.0' -t 500 -m 100 -w ./attackersite-forms.csv -v1
+-------
