@@ -203,7 +203,7 @@ if not ops["u"] or ops["h"] then
     print("\t-a\t - optional: user agent (pillage-agent/1.0 by default)")
     print("\t-c\t - optional: cookie storage (default cookiejar.txt)")
     print("\t-v\t - optional: verbosity. -v[1-3]")
-    print("\t-h\t - optional: what you're seeing right now\n")
+    print("\t-h\t - optional: you're looking at it\n")
     print("example: ")
     print("\t" .. arg[0] .. " -u http://www.attackersite.com -r -s -a 'attacker-agent/1.0' -t 500 -m 100 -w ./attackersite-forms.csv -v1\n")
     os.exit()
