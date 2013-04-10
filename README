@@ -1,10 +1,10 @@
 -------
 Name: pillage
-Script Name: pillage-0.03.lua
-Version: 0.03
+Script Name: pillage-0.04.lua
+Version: 0.0.4
 License: BSD Simplified
 Author: robert - amroot.com
-Date: Jun 25, 2012
+Version Release Date: April 10, 2013
 Description: currently, pillage's only job is to pillage web applications for forms and log them to a csv file. 
 what someone does with those forms is up to them. soon it will also log form fields as well. 
 -------
@@ -20,12 +20,17 @@ better error handling and debugging
 submit forms for multi-stage form disc?
 do not add previously found forms
 find and log form fields
+add the ability to supply a list of directories, pages, and/or URIs
 -------
 Notes:
 in before // is hierarchical and not part of the uri scheme
 -------
 Version history:
-0.03: first commit.
+0.0.4 - April 10, 2013:
+    fixed error if -w is not specified
+    merged includes into a single script
+0.0.3 - June 25, 2012: 
+    first commit
 -------
 Pillage usage: 
 	-u	 - required: valid URL to crawl. http(s)://userid:password@www.attackersite.com:port
