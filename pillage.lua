@@ -21,8 +21,8 @@ function getum(cur_url,red)
         return string.len(s)
     end
     local c = curl.easy_init()
-    c:setopt(curl.OPT_COOKIEJAR, "cookies.txt") --initiates cookie file if needed - this needs work
-    c:setopt(curl.OPT_COOKIEFILE, "cookies.txt") -- cookies from previous session if exist - needs work
+    c:setopt(curl.OPT_COOKIEJAR, cookiejar)
+    c:setopt(curl.OPT_COOKIEFILE, cookiejar)
     c:setopt(curl.OPT_VERBOSE, verbosie)
     c:setopt(curl.OPT_URL,cur_url)
     c:setopt(curl.OPT_FOLLOWLOCATION,1)
@@ -183,12 +183,13 @@ function getopt(arg, opions)
     return tab
 end -- End Alternative Get Opt
 
-ops = getopt(arg, "utwmva")
+ops = getopt(arg, "utwmvac")
 if ops["r"] then red = 1 else red = 0 end -- redirects
 if ops["t"] then t = ops["t"] end -- time to pause
 if ops["s"] then s = nil else s = true end -- stay in scope by default
 if ops["w"] then w = ops["w"] end -- write to file
 if ops["a"] then agent99 = ops["a"] else agent99 = "pillage-agent/1.0" end -- user agent
+if ops["c"] then cookiejar = ops["c"] else cookiejar = "cookiejar.txt" end -- cookie storage
 if ops["m"] then limit = tonumber(ops["m"]) end -- max urls to follow
 if tonumber(ops["v"]) then verbose = tonumber(ops["v"]) else verbose = 0 end -- verbose/debug
 
