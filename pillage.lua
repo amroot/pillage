@@ -1,5 +1,34 @@
 #!/usr/bin/lua
--- credit, notes, and release information at bottom of script. - stay clean --
+
+---------------------------
+-- Script: pillage --
+-- Version: 0.04
+-- License: BSD Simplified
+-- Author: Robert Gilbert - amroot.com
+-- Current Release Date: April 10, 2013
+-- Description: currently, pillage's only job is to find forms in web applications. I just felt like playing with Lua.
+--------------------------
+-- Required: luasec
+-- Debian prereq:
+-- apt-get install lua5.1 liblua5.1-0-dev liblua5.1-socket-dev liblua5.1-sec-dev liblua5.1-curl-dev
+--------------------------
+-- Verson history:
+--   0.0.4 - April 10, 2013:
+--       Fixed error if -w is not specified
+--       Merged includes into a single script
+--   0.0.3 - June 25, 2012:
+--       First release for public consumption
+--------------------------
+-- Short might do:
+-- Form based Authentication.
+-- Replace socket with regex
+-- Update cookiejar
+-- Better error handling and debugging
+-- Submit forms for multi-stage form disc?
+-- Do not add forms found previously
+-- Find and log form fields 
+-- Add the ability to supply a list of directories, pages, and/or URIs.
+-------------------------
 
 local socket = require("socket")
 local io = require("io")
@@ -26,7 +55,7 @@ function getum(cur_url,red)
     c:setopt(curl.OPT_VERBOSE, verbosie)
     c:setopt(curl.OPT_URL,cur_url)
     c:setopt(curl.OPT_FOLLOWLOCATION,1)
-    --c:setopt(curl.OPT_HEADERFUNCTION,WriteMemoryCallbackH) -- add this to regex the real location header... get rid of socks? soon?
+    --c:setopt(curl.OPT_HEADERFUNCTION,WriteMemoryCallbackH) -- add this to regex the real location header
     c:setopt(curl.OPT_WRITEFUNCTION, WriteMemoryCallbackB)
     c:setopt(curl.OPT_USERAGENT, agent99)
     c:setopt(curl.OPT_MAXREDIRS,10) --max 10 to stop redirect loops
@@ -292,38 +321,3 @@ if fh then
     fh:close()
 end
 print("\nEOF\n")
----------------------------
--- Script: pillage --
--- Version: 0.04
--- License: BSD Simplified
--- Author: Robert Gilbert - amroot.com
--- Current Release Date: April 10, 2013
--- Description: currently, pillage's only job is to find forms in web applications.  what someone does with those forms is up to them.
--- Future: Not sure. Debating parameter tampering but there's already tools for that.
--- If it can't improve on speed or reliability, that would be pointless. Given the name, it would be nice if it actually did pillage more than just forms. We'll see. 
---------------------------
--- Required: luasec
--- Debian prereq:
--- apt-get install lua5.1 liblua5.1-0-dev liblua5.1-socket-dev liblua5.1-sec-dev liblua5.1-curl-dev
---------------------------
--- Verson history:
---   0.0.4 - April 10, 2013:
---       Fixed error if -w is not specified
---       Merged includes into a single script
---   0.0.3 - June 25, 2012:
---       First release for public consumption
---------------------------
--- Short to do:
--- Form based Authentication.
--- Replace socket with regex
--- Threads - lots of threads
--- Update cookiejar
--- Better error handling and debugging
--- Submit forms for multi-stage form disc?
--- Do not add forms found previously
--- Find and log form fields 
--- Add the ability to supply a list of directories, pages, and/or URIs.
--------------------------
--- notes:
--- in before // is hierarchical and not part of the uri scheme
--------------------------
